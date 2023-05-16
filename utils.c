@@ -1,5 +1,5 @@
-#include <shell.h">
-#include <unistd.h>
+#include "shell.h"
+#include "unistd.h"
 /**
 * _putchar - writes the character c to stdout
 * @c: The character to print
@@ -10,7 +10,7 @@ int _putchar(char c)
 {
 return (write(1, &c, 1));
 }
-#include "shell.h"
+
 /**
 * _puts - prints a string, followed by a new line, to stdout
 *  @str: string to print
@@ -23,7 +23,7 @@ void _puts(char *str)
 	}
 	_putchar('\n');
 }
-#include "shell.h"
+
 /**
 * _strlen - function that returns the length of a string
 * @n: input
@@ -40,8 +40,6 @@ int _strlen(char *n)
 	}
 	return (longi);
 }
-
-#include "shell.h"
 
 /**
 * _strcpy - copy a string
@@ -61,7 +59,6 @@ char *_strcpy(char *dest, char *src)
 	return (dest);
 }
 
-#include "shell.h"
 /**
 * _strcat - concatenates two string
 * @dest: input value
