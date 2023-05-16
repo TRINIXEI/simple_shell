@@ -14,3 +14,6 @@ Documentation for Simple Shell project, a custom shell project built using C pro
 * Contents:
 	README.md - Contins the descriptive text and light documentations of all the datails of this simple_shell program.
 	AUTHORS - Contains the names and emails of the authors and contributors of this program
+	- Main.c - entry point of the shell, contains the function that launches the shell prompt
+	- tokenize.c - contains the function `str_brk` that breaks commands and returns an aray of pointers
+	- utils.c - contains all custom functions such as `_putchar _puts _strlen _strcpy _strcat` used in building simple shell

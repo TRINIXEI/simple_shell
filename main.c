@@ -19,18 +19,20 @@ int main(int ac, char **argv)
 
 	while (1)
 	{
-		printf("%s", prompt);
+		if (isatty(STDIN_FILENO))
+			_puts(prompt);
 		input = getline(&input_ptr, &n, stdin);
 		if (input == -1)
 		{
-			putchar('\n');
+			_putchar('\n');
 			break;
 		}
 		tokens = str_brk(input_ptr, delim);
 		i = 0;
 		while (tokens[i])
 		{
-			printf("%s\n", tokens[i]);
+			_puts(tokens[i]);
+			_putchar('\n');
 			i++;
 		}
 	}
