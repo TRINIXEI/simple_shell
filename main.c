@@ -11,9 +11,11 @@
 int main(int ac, char **argv)
 {
 	(void)ac, (void)argv;
+	char **tokens;
 	ssize_t  input;
-	char *input_ptr = NULL, *prompt = "$ ";
+	char *input_ptr = NULL, *prompt = "$ ", *delim = " \n";
 	size_t n = 0;
+	int i;
 
 	while (1)
 	{
@@ -24,7 +26,13 @@ int main(int ac, char **argv)
 			putchar('\n');
 			break;
 		}
-		printf("%s\n", input_ptr);
+		tokens = str_brk(input_ptr, delim);
+		i = 0;
+		while (tokens[i])
+		{
+			printf("%s\n", tokens[i]);
+			i++;
+		}
 	}
 	free(input_ptr);
 	return (0);
