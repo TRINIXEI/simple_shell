@@ -43,3 +43,22 @@ char **str_brk(char *cmd, char *delim)
 	free(cmd_cpy);
 	return (arr_ptr);
 }
+
+/**
+ * free_all - free all allocated memory space
+ * @ptr_arr: pointer array to free
+ *
+ * Return: void
+ */
+
+void free_all(char **ptr_arr)
+{
+	char **temp;
+
+	temp = ptr_arr;
+	if (temp == NULL)
+		return;
+	while (*ptr_arr)
+		free(*ptr_arr++);
+	free(temp);
+}

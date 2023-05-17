@@ -36,6 +36,7 @@ int main(int ac, char **argv)
 			i++;
 		}
 	}
+	free_all(tokens);
 	free(input_ptr);
 	return (0);
 }
