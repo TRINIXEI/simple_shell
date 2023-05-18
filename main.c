@@ -10,33 +10,27 @@
 
 int main(int ac, char **argv)
 {
-	(void)ac, (void)argv;
-	char **tokens;
 	ssize_t  input;
 	char *input_ptr = NULL, *prompt = "$ ", *delim = " \n";
 	size_t n = 0;
-	int i;
 
+	(void)ac;
 	while (1)
 	{
+		signal(SIGINT, sig_handler);
 		if (isatty(STDIN_FILENO))
 			_puts(prompt);
 		input = getline(&input_ptr, &n, stdin);
 		if (input == -1)
 		{
-			_putchar('\n');
+			if (isatty(STDIN_FILENO))
+				_putchar('\n');
 			break;
 		}
-		tokens = str_brk(input_ptr, delim);
-		i = 0;
-		while (tokens[i])
-		{
-			_puts(tokens[i]);
-			_putchar('\n');
-			i++;
-		}
+		argv = str_brk(input_ptr, delim);
+		processor(argv);
 	}
-	free_all(tokens);
+	free_all(argv);
 	free(input_ptr);
 	return (0);
 }
