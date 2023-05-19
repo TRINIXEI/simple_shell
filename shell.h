@@ -17,6 +17,7 @@ char **str_brk(char *cmd, char *delim);
 void free_all(char **ptr_arr);
 int processor(char **argv);
 void sig_handler(int sig_int);
+char *build_path(char **argv);
 
 /* environment functions */
 char *_getenv(char *name, char **env);
