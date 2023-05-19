@@ -13,7 +13,7 @@ int  processor(char **argv)
 	struct stat statbuff;
 	int status;
 
-	if(stat(argv[0], &statbuff) == 0)
+	if (stat(argv[0], &statbuff) == 0)
 	{
 		child = fork();
 		if (child == -1)
@@ -42,7 +42,7 @@ int  processor(char **argv)
 
 /**
  * sig_handler -  handles signal
- * @sig_int - value for SIGINT
+ * @sig_int: value for SIGINT
  *
  * Return: void
  */
