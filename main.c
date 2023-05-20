@@ -11,7 +11,7 @@
 int main(int ac, char **argv)
 {
 	ssize_t  input;
-	char *input_ptr = NULL, *prompt = "$ ", *delim = " \n";
+	char *input_ptr = NULL, *prompt = "$ ", *delim = " \n", *cmd;
 	size_t n = 0;
 
 	(void)ac;
@@ -28,7 +28,9 @@ int main(int ac, char **argv)
 			break;
 		}
 		argv = str_brk(input_ptr, delim);
-		processor(argv);
+		cmd = build_path(argv);
+		processor(cmd, argv);
+		
 	}
 	free_all(argv);
 	free(input_ptr);

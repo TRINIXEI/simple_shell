@@ -2,42 +2,55 @@
 
 /**
  * processor - evaluates the command entered
- * @argv: the argument array of commands
+ * @path: the built path
+ * @argv: arguments array
+ *
+ * Return: void
+ */
+
+void processor(char *path, char **argv)
+{
+	struct stat statbuff;
+
+	if (stat(argv[0], &statbuff) == 0)
+	{
+		printf("argv[0] works\n");
+	}
+	else if (stat(path, &statbuff) == 0)
+	{
+		printf("performing for path\n");
+	}
+}
+
+/**
+ * _exec - execute an executable file
+ * @path: first command
+ * @argv: argument variable
  *
  * Return: int
  */
 
-int  processor(char **argv)
+int _exec(char *path, char **argv)
 {
 	pid_t child;
-	struct stat statbuff;
-	int status;
+	int stat;
 
-	if (stat(argv[0], &statbuff) == 0)
+	child = fork();
+	if (child == -1)
 	{
-		child = fork();
-		if (child == -1)
-		{
+		perror("/hsh");
+		return (1);
+	}
+	else if (child == 0)
+	{
+		if (execve(path, argv, environ) == -1)
 			perror("/hsh");
-			return (1);
-		}
-		else if (child == 0)
-		{
-			if (execve(argv[0], argv, environ) == -1)
-				perror("/hsh");
-		}
-		else
-		{
-			wait(&status);
-		}
-		return (0);
 	}
 	else
 	{
-		if (execve(argv[0], argv, environ) == -1)
-			perror("/hsh");
-		return (0);
+		wait(&stat);
 	}
+	return (0);
 }
 
 /**
