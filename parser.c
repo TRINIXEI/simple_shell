@@ -69,7 +69,7 @@ int _exec(char *path, char **argv)
 void sig_handler(int sig_int)
 {
 	if (sig_int == SIGINT)
-		_putchar('\n');
+		_puts("\n$ ");
 }
 
 /**
