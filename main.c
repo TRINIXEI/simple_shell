@@ -28,7 +28,7 @@ int main(int ac, char **argv)
 			break;
 		}
 		argv = str_brk(input_ptr, delim);
-		cmd = build_path(argv);
+		cmd = argv[0];
 		processor(cmd, argv);
 		
 	}

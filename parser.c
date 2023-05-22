@@ -10,16 +10,18 @@
 
 void processor(char *path, char **argv)
 {
-	struct stat statbuff;
+	char *command = build_path(path);
 
-	if (stat(argv[0], &statbuff) == 0)
+	if (path == NULL || argv == NULL)
 	{
-		printf("argv[0] works\n");
+		/* _putchar('\n'); */
 	}
-	else if (stat(path, &statbuff) == 0)
+	else if (command != NULL)
 	{
-		printf("performing for path\n");
+		_exec(command, argv);
 	}
+	else
+		printf("none works\n");
 }
 
 /**
@@ -68,36 +70,48 @@ void sig_handler(int sig_int)
 
 /**
  * build_path - build path of executable command
- * @argv: argument variable
+ * @cmd: argument variable
  *
  * Return: full path
  */
 
-char *build_path(char **argv)
+char *build_path(char *cmd)
 {
-	struct stat buffer;
-	char *path, *full_path;
-	char **path_arr;
-	int i = 0, len, path_len;
+	char *path, *p_cpy, *full_path, *p_token;
+	struct stat buff;
+	int len, p_len;
 
+	if (cmd == NULL)
+		return (NULL);
 	path = _getenv("PATH", environ);
-	path_arr = str_brk(path, ":");
-	len = _strlen(argv[0]);
-	while (path_arr[i] != NULL)
+	if (path == NULL)
 	{
-		path_len = _strlen(path_arr[i]);
-		full_path = malloc(sizeof(char) * (len + path_len + 2));
-		_strcpy(full_path, path_arr[i]);
+		perror("/hsh: error");
+		return (NULL);
+	}
+	p_cpy = strdup(path);
+	len = _strlen(cmd);
+	p_token = strtok(p_cpy, ":");
+	while (p_token != NULL)
+	{
+		p_len = _strlen(p_token);
+		full_path = malloc(sizeof(char) * (p_len + len + 2));
+		_strcpy(full_path, p_token);
 		_strcat(full_path, "/");
-		_strcat(full_path, argv[0]);
-		_strcat(full_path, "\0");
-		if (stat(full_path, &buffer) == 0)
+		_strcat(full_path, cmd);
+		if (stat(full_path, &buff) == 0)
 		{
-			free_all(path_arr);
+			free(p_cpy);
 			return (full_path);
 		}
-		free(full_path);
-		i++;
+		else
+		{
+			free(full_path);
+			p_token = strtok(NULL, ":");
+		}
 	}
+	free(p_cpy);
+	if (stat(cmd, &buff) == 0)
+		return (cmd);
 	return (NULL);
 }
