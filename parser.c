@@ -14,14 +14,18 @@ void processor(char *path, char **argv)
 
 	if (path == NULL || argv == NULL)
 	{
-		/* _putchar('\n'); */
+		free(command);
 	}
 	else if (command != NULL)
 	{
 		_exec(command, argv);
+		free(command);
 	}
 	else
-		printf("none works\n");
+	{
+		printf("non works\n");
+		free(command);
+	}
 }
 
 /**
