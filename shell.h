@@ -16,7 +16,7 @@ extern char **environ;
 char **str_brk(char *cmd, char *delim);
 void free_all(char **ptr_arr);
 void sig_handler(int sig_int);
-char *build_path(char **argv);
+char *build_path(char *cmd);
 void processor(char *path, char **argv);
 int _exec(char *path, char **argv);
 
