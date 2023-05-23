@@ -55,3 +55,32 @@ int _strcmp(char *s1, char *s2)
 	}
 	return (0);
 }
+
+/**
+ * *_strdup - copies the string given as parameter
+ * @str: string to duplicate
+ * Return: pointer to the copied string (Success), NULL (Error)
+ */
+char *_strdup(char *str)
+{
+	char *duplicate;
+	unsigned int h, len;
+
+	h = 0;
+	len = 0;
+
+	if (str == NULL)
+		return (NULL);
+
+	while (str[len])
+		len++;
+	duplicate = malloc(sizeof(char) * (len + 1));
+
+	if (duplicate == NULL)
+		return (NULL);
+
+	while ((duplicate[h] = str[h]) != '\0')
+		h++;
+
+	return (duplicate);
+}
