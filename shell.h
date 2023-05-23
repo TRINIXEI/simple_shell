@@ -23,6 +23,18 @@ int _exec(char *path, char **argv);
 /* environment functions */
 char *_getenv(char *name, char **env);
 
+/**
+ * struct builtin_func - a structure for builtin fuctions
+ * @name: name of builtin command
+ * @_name: function of builtin
+ */
+
+typedef struct builtin_func
+{
+	char *name;
+	void (*_name)(char *cmd, char **argv);
+} built_in;
+
 /* functions to manipulate strings */
 int _putchar(char c);
 void _puts(char *str);
