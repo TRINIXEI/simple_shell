@@ -93,7 +93,7 @@ char *build_path(char *cmd)
 		perror("/hsh: error");
 		return (NULL);
 	}
-	p_cpy = strdup(path);
+	p_cpy = _strdup(path);
 	len = _strlen(cmd);
 	p_token = strtok(p_cpy, ":");
 	while (p_token != NULL)
