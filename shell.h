@@ -32,7 +32,7 @@ char *_getenv(char *name, char **env);
 typedef struct builtin_func
 {
 	char *name;
-	void (*_name)(char *cmd, char **argv);
+	void (*n)(char *cmd, char **argv);
 } built_in;
 
 /* functions to manipulate strings */
@@ -44,5 +44,9 @@ char *_strcat(char *dest, char *src);
 int _atoi(char *z);
 int _strcmp(char *s1, char *s2);
 char *_strdup(char *str);
+
+/* built_in functions */
+int check_built(char *cmd, char **argv);
+void exit_f(char *cmd, char **argv);
 
 #endif

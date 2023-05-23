@@ -116,6 +116,9 @@ char *build_path(char *cmd)
 	}
 	free(p_cpy);
 	if (stat(cmd, &buff) == 0)
+	{
+		free(full_path);
 		return (cmd);
+	}
 	return (NULL);
 }
