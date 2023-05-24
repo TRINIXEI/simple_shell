@@ -13,10 +13,12 @@ int main(int ac, char **argv)
 	ssize_t  input;
 	char *input_ptr = NULL, *prompt = "$ ", *delim = " \n", *cmd;
 	size_t n = 0;
+	int counter = 0, build;
 
-	(void)ac;
+	(void)ac, (void)build;
 	while (1)
 	{
+		counter++;
 		signal(SIGINT, sig_handler);
 		if (isatty(STDIN_FILENO))
 			_puts(prompt);
@@ -29,10 +31,11 @@ int main(int ac, char **argv)
 		}
 		argv = str_brk(input_ptr, delim);
 		cmd = argv[0];
-		processor(cmd, argv);
-		
+		build = check_built(input_ptr, argv);
+		if (build == 1)
+			processor(cmd, argv);
 	}
 	free_all(argv);
 	free(input_ptr);
-	return (0);
+	exit(0);
 }
