@@ -14,8 +14,9 @@ int main(int ac, char **argv)
 	char *input_ptr = NULL, *prompt = "$ ", *delim = " \n", *cmd;
 	size_t n = 0;
 	int counter = 0, build;
+	char **cmd_arr;
 
-	(void)ac, (void)build;
+	(void)ac;
 	while (1)
 	{
 		counter++;
@@ -29,13 +30,13 @@ int main(int ac, char **argv)
 				_putchar('\n');
 			break;
 		}
-		argv = str_brk(input_ptr, delim);
-		cmd = argv[0];
-		build = check_built(input_ptr, argv);
+		cmd_arr = str_brk(input_ptr, delim);
+		cmd = cmd_arr[0];
+		build = check_built(input_ptr, cmd_arr);
 		if (build == 1)
-			processor(cmd, argv);
+			processor(cmd, cmd_arr, argv);
 	}
-	free_all(argv);
+	free_all(cmd_arr);
 	free(input_ptr);
 	exit(0);
 }

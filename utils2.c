@@ -84,3 +84,27 @@ char *_strdup(char *str)
 
 	return (duplicate);
 }
+
+/**
+ * print_int - print integer
+ * @n: number
+ *
+ * Return: int
+ */
+
+int print_int(int n)
+{
+	int num_len = 0, div = 1;
+	unsigned int digit;
+
+	digit = n;
+	while (digit/div > 9)
+		div *= 10;
+	while (div != 0)
+	{
+		num_len += _putchar('0' + digit/div);
+		digit %= div;
+		div /= 10;
+	}
+	return (num_len);
+}

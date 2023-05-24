@@ -8,7 +8,7 @@
  * Return: 0 or 1
  */
 
-int check_built(char *cmd, char **argv)
+int check_built(char *cmd, char **carr)
 {
 	int i;
 	built_in b_arr[] = {
@@ -17,12 +17,12 @@ int check_built(char *cmd, char **argv)
 
 	for (i = 0; b_arr[i].name != NULL; i++)
 	{
-		if (_strcmp(cmd, b_arr[i].name) == 0)
+		if (_strcmp(carr[0], b_arr[i].name) == 0)
 			break;
 	}
 	if (b_arr[i].n != NULL)
 	{
-		b_arr[i].n(cmd, argv);
+		b_arr[i].n(cmd, carr);
 		return (0);
 	}
 	return (1);
@@ -36,12 +36,12 @@ int check_built(char *cmd, char **argv)
  * Return: 1 or 0
  */
 
-void exit_f(char *cmd, char **argv)
+void exit_f(char *cmd, char **carr)
 {
-	if (argv[1] == NULL)
+	if (carr[1] == NULL)
 	{
 		free(cmd);
-		free_all(argv);
+		free_all(carr);
 		exit(0);
 	}
 }

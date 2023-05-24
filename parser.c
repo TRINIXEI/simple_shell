@@ -8,21 +8,22 @@
  * Return: void
  */
 
-void processor(char *path, char **argv)
+void processor(char *path, char **carr, char **argv)
 {
 	char *command = build_path(path);
 
-	if (path == NULL || argv == NULL)
+	(void)argv;
+	if (path == NULL || carr == NULL)
 	{
 		free(command);
 	}
 	else if (check_path(path) == 0)
 	{
-		_exec(path, argv);
+		_exec(path, carr);
 	}
 	else if (command != NULL)
 	{
-		_exec(command, argv);
+		_exec(command, carr);
 		free(command);
 	}
 	else
@@ -40,7 +41,7 @@ void processor(char *path, char **argv)
  * Return: int
  */
 
-int _exec(char *path, char **argv)
+int _exec(char *path, char **carr)
 {
 	pid_t child;
 	int stat;
@@ -53,7 +54,7 @@ int _exec(char *path, char **argv)
 	}
 	else if (child == 0)
 	{
-		if (execve(path, argv, environ) == -1)
+		if (execve(path, carr, environ) == -1)
 			perror("/hsh");
 	}
 	else
