@@ -37,5 +37,5 @@ int main(int ac, char **argv)
 	}
 	free_all(argv);
 	free(input_ptr);
-	return (0);
+	exit(0);
 }
