@@ -16,6 +16,10 @@ void processor(char *path, char **argv)
 	{
 		free(command);
 	}
+	else if (check_path(path) == 0)
+	{
+		_exec(path, argv);
+	}
 	else if (command != NULL)
 	{
 		_exec(command, argv);
@@ -115,10 +119,21 @@ char *build_path(char *cmd)
 		}
 	}
 	free(p_cpy);
-	if (stat(cmd, &buff) == 0)
-	{
-		free(full_path);
-		return (cmd);
-	}
 	return (NULL);
+}
+
+/**
+ * check_path - check if command is an executable path
+ * @cmd: command entered
+ *
+ * Return: int
+ */
+
+int check_path(char *cmd)
+{
+	struct stat buff;
+
+	if (stat(cmd, &buff) == 0)
+		return (0);
+	return (1);
 }

@@ -19,6 +19,7 @@ void sig_handler(int sig_int);
 char *build_path(char *cmd);
 void processor(char *path, char **argv);
 int _exec(char *path, char **argv);
+int check_path( char *cmd);
 
 /* environment functions */
 char *_getenv(char *name, char **env);

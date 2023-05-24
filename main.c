@@ -15,7 +15,7 @@ int main(int ac, char **argv)
 	size_t n = 0;
 	int counter = 0, build;
 
-	(void)ac;
+	(void)ac, (void)build;
 	while (1)
 	{
 		counter++;
