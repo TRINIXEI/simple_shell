@@ -98,11 +98,11 @@ int print_int(int n)
 	unsigned int digit;
 
 	digit = n;
-	while (digit/div > 9)
+	while (digit / div > 9)
 		div *= 10;
 	while (div != 0)
 	{
-		num_len += _putchar('0' + digit/div);
+		num_len += _putchar('0' + digit / div);
 		digit %= div;
 		div /= 10;
 	}

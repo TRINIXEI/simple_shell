@@ -3,6 +3,7 @@
 /**
  * processor - evaluates the command entered
  * @path: the built path
+ * @carr: split token array
  * @argv: arguments array
  *
  * Return: void
@@ -36,7 +37,7 @@ void processor(char *path, char **carr, char **argv)
 /**
  * _exec - execute an executable file
  * @path: first command
- * @argv: argument variable
+ * @carr: argument variable
  *
  * Return: int
  */

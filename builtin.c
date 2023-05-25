@@ -3,7 +3,7 @@
 /**
  * check_built - checks for builtin
  * @cmd: command entered
- * @argv: argument array
+ * @carr: argument array
  *
  * Return: 0 or 1
  */
@@ -31,7 +31,7 @@ int check_built(char *cmd, char **carr)
 /**
  * exit_f - exit from shell
  * @cmd: command entered
- * @argv: arguments array
+ * @carr: arguments array
  *
  * Return: 1 or 0
  */
